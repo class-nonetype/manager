@@ -171,7 +171,6 @@ async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, sess
 
     token: str = get_token()
 
-
     set_last_login_date(session=session, user_id=user.id)
 
     if not token:
@@ -179,12 +178,12 @@ async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, sess
 
         return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_403_FORBIDDEN, content=content)
 
-
-    return {
+    content = {
         'client': request.client.host,
         'user_id': user.id,
         'access_token': token,
     }
+    return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_200_OK, content=content)
 
 
 

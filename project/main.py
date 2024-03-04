@@ -1,3 +1,9 @@
+'''
+git config --global user.name "<username>"
+git config --global user.email "<email>"
+git remote set-url origin https://<githubtoken>@github.com/<username>/<repositoryname>.git
+'''
+
 import os
 import pathlib
 

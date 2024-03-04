@@ -52,15 +52,26 @@ async def root(request: Request, Authorization: Optional[str] = Header(None)) ->
 
 
 
-@router.get("/")
-async def application(request: Request):
+@router.get(path="/")
+async def root(request: Request):
+    try:
+        return template.TemplateResponse("sign-in.html", {"request": request})
+
+    except Exception as exception:
+        log.exception(msg=str(exception))
+        return {"Exception": str(exception)}
+
+
+#dependencies=[fastapi.Depends(JWTBearer())])
+@router.get(path="/application/")
+async def application(request: Request, token: str = Depends(JWTBearer())):
+    print(token)
     try:
         return template.TemplateResponse("application.html", {"request": request})
 
     except Exception as exception:
         log.exception(msg=str(exception))
         return {"Exception": str(exception)}
-
 
 
 
