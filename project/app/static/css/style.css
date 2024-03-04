@@ -130,7 +130,6 @@ div.content {
     float: auto; /* Posiciona el contenido a la derecha */
     width: calc(100% - 280px); /* Restar el ancho del sidebar */
     margin-left: 280px; /* Margen izquierdo igual al ancho del sidebar */
-    display: block;
 }
 
 

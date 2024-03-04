@@ -1,6 +1,6 @@
 function toggleSideBar() {
     var sideBar = document.getElementById("sidebar");
-    var content = document.querySelector(".content");
+    var content = document.getElementById("content");
 
 
     if (sideBar.style.width !== "48px") {
