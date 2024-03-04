@@ -3,6 +3,11 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from app.maintainer import decode_token
 
+
+class Token:
+    access_token: str
+
+
 class JWTBearer(HTTPBearer):
     def __init__(self, auto_error: bool = True):
         super(JWTBearer, self).__init__(auto_error=auto_error)

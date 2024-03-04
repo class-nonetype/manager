@@ -12,7 +12,8 @@ async function getApplication() {
             method: 'GET',
             headers: {
                 'Accept': 'text/html', // Esperamos una respuesta HTML
-                'Authorization': token
+                ...(token && { 'Authorization': token }) // Incluye el token solo si está presente
+                // 'Authorization': token
             }
         });
         

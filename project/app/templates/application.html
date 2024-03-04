@@ -7,14 +7,16 @@
     {% endif %}
 {% endblock %}
 
-<section class="h-100">
-    {% block sidebar %}
-        {% include "sidebar.html" %}
-    {% endblock %}
+{% if token %}
+    <section class="h-100">
+        {% block sidebar %}
+            {% include "sidebar.html" %}
+        {% endblock %}
 
-    {% block content %}
-        {% include "content.html" %}
-    {% endblock %}
-</section>
+        {% block content %}
+            {% include "content.html" %}
+        {% endblock %}
+    </section>
+{% endif %}
 
 {% endblock %}

@@ -12,9 +12,9 @@ from typing import Literal, Dict, Any, Annotated
 
 
 
-from app.utils import (log, session as _session, TEMPLATE_DIRECTORY_PATH)
+from app.utils import (log, session as Session, TEMPLATE_DIRECTORY_PATH)
 from app.schemas import UserAccount as UserAccountSchema, CreateUser
-from app.internal.jwt import JWTBearer
+from app.internal.jwt import JWTBearer, Token
 from app.maintainer import (
     set_token,
     get_token,
@@ -36,7 +36,7 @@ template = templating.Jinja2Templates(
 
 
 async def session():
-    database = _session()
+    database = Session()
     try:
         yield database
 
@@ -56,7 +56,6 @@ async def session():
     description='Endpoint para inicio de sesión de usuario.',
     summary='Autenticación del usuario.'
 )
-#async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, username: str = fastapi.Form(...), password: str = fastapi.Form(...), session: sqlalchemy.orm.Session = fastapi.Depends(session)):
 async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, session: sqlalchemy.orm.Session = fastapi.Depends(session)):
     
     user_authentication: (tuple | Literal[False]) = validate_user_authentication(
@@ -86,6 +85,7 @@ async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, sess
         content = {'message': 'Permiso denegado.'}
 
         return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_403_FORBIDDEN, content=content)
+
 
     content = {
         'client': request.client.host,

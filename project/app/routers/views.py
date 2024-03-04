@@ -8,14 +8,18 @@ from fastapi.responses import HTMLResponse
 from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.routing import APIRouter
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-from app.utils import TEMPLATE_DIRECTORY_PATH, log, STORAGE_DIRECTORY_PATH, session as _session
-from app.maintainer import validate_token_
 from app.internal.jwt import JWTBearer
-
+from app.utils import TEMPLATE_DIRECTORY_PATH, log, STORAGE_DIRECTORY_PATH, session as Session
+from app.maintainer import get_token
 
 from typing import Dict, Any, Optional
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from typing import Optional
 
+security = HTTPBearer()
 router = APIRouter()
 template = templating.Jinja2Templates(
     directory=TEMPLATE_DIRECTORY_PATH
@@ -23,7 +27,7 @@ template = templating.Jinja2Templates(
 
 
 async def session():
-    database = _session()
+    database = Session()
     try:
         yield database
 
@@ -64,15 +68,15 @@ async def root(request: Request):
 
 
 @router.get(path="/application/")
-async def application(request: Request, token: str = None):
-    print(token)
+async def application(request: fastapi.Request, token: str = fastapi.Header(None, alias="Authorization")):
+    # if 'authorization' in request.headers:
+    #     authorization = request.headers['authorization'].split(' ')[1]
     try:
-        return template.TemplateResponse("application.html", {"request": request})
+        return template.TemplateResponse("application.html", {"request": request, 'token': token})
 
     except Exception as exception:
         log.exception(msg=str(exception))
         return {"Exception": str(exception)}
-
 
 
 @router.get(path="/sign-in/")
