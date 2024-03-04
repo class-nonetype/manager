@@ -1,0 +1,60 @@
+{% block sidebar %}
+
+<div class="app_sidebar" id="sidebar">
+    <a class="app_sidebar_button active" href="javascript:void(0)" onclick="toggleSideBar()">
+        <span class="app_sidebar_button_icon"><i class="fa fa-bars"></i></span>
+        <span class="app_sidebar_button_p"></span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('home')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-home-user"></i></span>
+        <span class="app_sidebar_button_p">Inicio</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('dashboard')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-chart-column"></i></span>
+        <span class="app_sidebar_button_p">Panel de seguimiento</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('projects')">
+        <span class="app_sidebar_button_icon"><i class="fa-solid fa-diagram-project"></i></span>
+        <span class="app_sidebar_button_p">Proyectos</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('works')">
+        <span class="app_sidebar_button_icon"><i class="fa-solid fa-list-check"></i></span>
+        <span class="app_sidebar_button_p">Tareas</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('directories')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-folder-tree"></i></span>
+        <span class="app_sidebar_button_p">Directorios</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('files')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-file"></i></span>
+        <span class="app_sidebar_button_p">Archivos</span>
+    </a>
+    <a class="app_sidebar_button" onclick="loadContent('calendar')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-calendar"></i></span>
+        <span class="app_sidebar_button_p">Calendario</span>
+    </a>
+
+    <a class="app_sidebar_button" onclick="loadContent('support')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-circle-question"></i></span>
+        <span class="app_sidebar_button_p">Ayuda/Soporte</span>
+    </a>
+
+    <a class="app_sidebar_button" onclick="loadContent('settings')">
+        <span class="app_sidebar_button_icon"><i class="fa fa-gear"></i></span>
+        <span class="app_sidebar_button_p">Ajustes</span>
+    </a>
+
+    <a class="app_sidebar_button" onclick="loadContent('profile')">
+        <span class="app_sidebar_button_icon"><i class="fa-solid fa-user-circle"></i></span>
+        <span class="app_sidebar_button_p">Mi perfil</span>
+    </a>
+
+    <a class="app_sidebar_button" onclick="loadContent('logout')">
+        <span class="app_sidebar_button_icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+        <span class="app_sidebar_button_p">Cerrar sesion</span>
+    </a>
+</div>
+
+
+
+{% endblock %}

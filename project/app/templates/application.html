@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% block notifications %}
+    {% if notification is defined %}
+        {{ notification | safe }}
+    {% endif %}
+{% endblock %}
+
+<section class="h-100">
+    {% block sidebar %}
+        {% include "sidebar.html" %}
+    {% endblock %}
+
+    {% block content %}
+        {% include "content.html" %}
+    {% endblock %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,348 @@
+body {
+    margin: 0;
+    font-family: 'Fira Code';
+}
+
+.app_sidebar {
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    height: 100%;
+    min-width: 48px !important;
+    background-color: #f1f1f1;
+    /* background-color: rgba(240, 240, 240, 0.9); */
+    position: fixed;
+    overflow: auto;
+    display: block;
+    transition: width 0.5s ease;
+}
+
+
+/* Sidebar links */
+.app_sidebar a {
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    width: 100%; /* El enlace ocupa todo el ancho disponible */
+    box-sizing: border-box; /* El padding se incluye en el ancho total */
+
+
+    border: none; /* Elimina el borde */
+    background-color: transparent; /* Fondo transparente */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+
+
+/* Active/current link */
+.app_sidebar a.active {
+    background-color: #04aa6d;
+    color: white;
+}
+
+/* Links on mouse-over */
+.app_sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.app_sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Color de fondo al pasar el mouse */
+}
+
+
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+    margin-left: 280px;
+    padding: 1px 16px;
+    height: 1000px;
+    transition: margin-left 1.1s ease;
+    display: block;
+
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+    .app_sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .app_sidebar a {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+    .app_sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+
+
+
+
+
+.app_sidebar_button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.app_sidebar_button_icon {
+    flex-shrink: 0; /* Evitar que el icono se contraiga */
+    width: 24px; /* Ancho fijo para el icono */
+    margin-right: 16px; /* Espacio entre el icono y el texto */
+}
+
+
+.app_sidebar_button_p {
+    user-select: none !important;;
+    flex-grow: 1; /* Permitir que el texto crezca para llenar el espacio disponible */
+    white-space: nowrap; /* Evitar el salto de línea */
+    overflow: hidden; /* Ocultar el texto que desborda */
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos (...) cuando el texto desborda */
+    transition: width 0.5s ease; /* Añadir transición de 0.5 segundos para la propiedad width */
+}
+
+
+
+.app_content {
+    padding: 16px;
+    height: 1000px; /* Solo para propósitos de demostración */
+    overflow: auto; /* Añade un desplazamiento si el contenido es demasiado grande */
+    background-color: #fff; /* Fondo sólido para el contenido */
+
+    float: auto; /* Posiciona el contenido a la derecha */
+    width: calc(100% - 280px); /* Restar el ancho del sidebar */
+    margin-left: 280px; /* Margen izquierdo igual al ancho del sidebar */
+    display: block;
+}
+
+
+
+/* Ajustar los estilos para el contenido cuando el sidebar se expanda */
+.app_sidebar.expanded ~ .app_content {
+    width: calc(100% - 280px); /* Ajusta el ancho del contenido cuando el sidebar se expande */
+    margin-left: 280px; /* Ajusta el margen izquierdo del contenido cuando el sidebar se expande */
+    float: right; /* Posiciona el contenido al lado derecho del sidebar */
+}
+
+
+
+
+.app-project-folder {
+    align-items: start;
+    width: 120px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.app-project-folder .fa-folder {
+    font-size: 52px;
+    color: #1e90ff;
+}
+
+.app-project-folder-name {
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+/* Considerar esta nomenclatura */
+
+.app_login {
+    max-width: 450px;
+    margin: 15% auto 0; /* Margen superior de 50px y centrado horizontal */
+    padding: 24px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+
+    text-align: center;
+    
+    position: relative; /* Añade posición relativa para efecto de elevación */
+
+    /* Las siguientes propiedades no son necesarias para centrar, pero pueden ayudar a ajustar el diseño */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Efecto de sombra debajo del elemento */
+    transition: transform 0.9s ease, box-shadow 0.9s ease;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+
+
+
+/* Efecto de levantamiento 3D al pasar el mouse */
+.app_login:hover {
+    transform: translateY(-15px); /* Elevación del elemento */
+}
+
+.form-group {
+    margin-bottom: 16px; /* Espacio entre cada campo de formulario */
+}
+
+
+
+.app_form_title,
+.app_form_label {
+    user-select: none;
+}
+
+.app_form_label {
+    text-align: left !important;
+}
+
+.app_form_input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: #C86F38;
+    transition: border-bottom-width 0.3s, border-color 0.3s; /* Transición suave */
+}
+
+.app_form_input:hover,
+.app_form_input:focus {
+    border-bottom-width: 5px;
+    border-color: #C86F38;
+}
+
+.app_form_input:focus {
+    outline: none; /* Elimina el contorno predeterminado del navegador al hacer clic en el input */
+}
+
+
+
+.app_form_button {
+    background-color: #C86F38;
+    color: #F1F1F1;
+    
+    width: 100% !important;
+    height: 32px !important;
+
+    border: 0;
+    border-radius: 24px;
+    margin-top: 16px; /* Espacio entre el último campo de formulario y el botón */
+}
+
+
+.app_form_button:hover {
+    background-color: #E1874F;
+    color: #212121;
+}
+
+.app_form_button:hover .overlay {
+  transform: scale(2) translateZ(0);
+  transition: color 0.9s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.app_login {
+    max-width: 450px;
+    margin: 15% auto 0; /* Margen superior de 50px y centrado horizontal */
+    padding: 24px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: left; /* Alinea el texto a la izquierda */
+
+    position: relative; /* Añade posición relativa para efecto de elevación */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Efecto de sombra debajo del elemento */
+    transition: transform 0.9s ease, box-shadow 0.9s ease;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* Efecto de levantamiento 3D al pasar el mouse */
+.app_login:hover {
+    transform: translateY(-15px); /* Elevación del elemento */
+}
+
+.form-group {
+    margin-bottom: 16px; /* Espacio entre cada campo de formulario */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide el espacio en dos columnas */
+    gap: 10px; /* Espacio entre las columnas */
+}
+
+.app_form_title,
+.app_form_label {
+    user-select: none;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.app_form_label {
+    align-self: center; /* Centra verticalmente el label */
+}
+
+.app_form_input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: #C86F38;
+    transition: border-bottom-width 0.3s, border-color 0.3s;
+    text-align: center;
+}
+
+.app_form_input:hover,
+.app_form_input:focus {
+    border-bottom-width: 5px;
+    border-color: #C86F38;
+}
+
+.app_form_input:focus {
+    outline: none; /* Elimina el contorno predeterminado del navegador al hacer clic en el input */
+}
+
+.app_form_button {
+    background-color: #C86F38;
+    color: #F1F1F1;
+    width: 100%; /* Define el ancho del botón al 100% */
+    height: 32px !important;
+    border: 0;
+    border-radius: 24px;
+    margin-top: 16px; /* Espacio entre el último campo de formulario y el botón */
+    align-self: center; /* Centra el botón */
+}
