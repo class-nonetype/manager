@@ -62,9 +62,9 @@ async def root(request: Request):
         return {"Exception": str(exception)}
 
 
-#dependencies=[fastapi.Depends(JWTBearer())])
+
 @router.get(path="/application/")
-async def application(request: Request, token: str = Depends(JWTBearer())):
+async def application(request: Request, token: str = None):
     print(token)
     try:
         return template.TemplateResponse("application.html", {"request": request})
@@ -72,9 +72,6 @@ async def application(request: Request, token: str = Depends(JWTBearer())):
     except Exception as exception:
         log.exception(msg=str(exception))
         return {"Exception": str(exception)}
-
-
-
 
 
 
