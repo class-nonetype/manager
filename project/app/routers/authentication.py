@@ -12,7 +12,7 @@ from typing import Literal, Dict, Any, Annotated
 
 
 
-from app.utils import (log, session as Session, TEMPLATE_DIRECTORY_PATH)
+from app.utils import (log, session as Session, TEMPLATE_DIRECTORY_PATH, user_session)
 from app.schemas import UserAccount as UserAccountSchema, CreateUser
 from app.internal.jwt import JWTBearer, Token
 from app.maintainer import (
@@ -95,7 +95,51 @@ async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, sess
     return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_200_OK, content=content)
 
 
+@router.post(
+    path='/sign-in/',
+    tags=['Autenticación'],
+    description='Endpoint para inicio de sesión de usuario.',
+    summary='Autenticación del usuario.'
+)
+async def sign_in(UserAccount: UserAccountSchema, request: fastapi.Request, session: sqlalchemy.orm.Session = fastapi.Depends(session)):
+    
+    user_authentication: (tuple | Literal[False]) = validate_user_authentication(
+        session=session,
+        username=UserAccount.username,
+        password=UserAccount.password
+    )
 
+    if not user_authentication:
+        content = {'message': 'Autenticación fallida.'}
+
+        return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_401_UNAUTHORIZED, content=content)
+    
+    user = user_authentication
+    user_credential = {}
+    user_credential.update(user.get_id())
+    user_credential.update(user.get_username())
+    user_credential['role_id'] = str(user.role_id)
+
+    set_token(credential=user_credential)
+
+    token: str = get_token()
+
+    set_last_login_date(session=session, user_id=user.id)
+
+    if not token:
+        content = {'message': 'Permiso denegado.'}
+
+        return fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_403_FORBIDDEN, content=content)
+
+    
+    content = {
+        'client': request.client.host,
+        'user_id': user.id,
+        'access_token': token,
+    }
+    response = fastapi.responses.JSONResponse(status_code=starlette.status.HTTP_200_OK, content=content)
+    response.set_cookie(key="token", value=token, httponly=True, max_age=3600)  # Aquí puedes ajustar el nombre de la cookie y su tiempo de vida
+    return response
 
 
 

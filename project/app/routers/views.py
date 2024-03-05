@@ -12,8 +12,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from app.internal.jwt import JWTBearer
 from app.utils import TEMPLATE_DIRECTORY_PATH, log, STORAGE_DIRECTORY_PATH, session as Session
-from app.maintainer import get_token
-
+from app.maintainer import get_token, validate_token_ as validate_token
 from typing import Dict, Any, Optional
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -21,6 +20,7 @@ from typing import Optional
 
 security = HTTPBearer()
 router = APIRouter()
+
 template = templating.Jinja2Templates(
     directory=TEMPLATE_DIRECTORY_PATH
 )
@@ -38,14 +38,14 @@ async def session():
         database.close()
 
 
-
 '''
 @router.get("/")
-async def root(request: Request, Authorization: Optional[str] = Header(None)) -> HTMLResponse:
-    if Authorization is None:
+async def root(request: Request) -> HTMLResponse:
+    token: str = fastapi.Header(None, alias="Authorization")
+    if token is None:
         return template.TemplateResponse("sign-in.html", {"request": request})
     
-    decoded_token = validate_token_(token=Authorization, output=True)
+    decoded_token = validate_token(token=token, output=True)
 
     if decoded_token:
         return template.TemplateResponse("application.html", {"request": request})
@@ -54,10 +54,11 @@ async def root(request: Request, Authorization: Optional[str] = Header(None)) ->
 '''
 
 
-
-
 @router.get(path="/")
 async def root(request: Request):
+    print(f'{request.cookies=}')
+    print(f'{request.headers=}')
+    
     try:
         return template.TemplateResponse("sign-in.html", {"request": request})
 
@@ -66,9 +67,11 @@ async def root(request: Request):
         return {"Exception": str(exception)}
 
 
-
 @router.get(path="/application/")
 async def application(request: fastapi.Request, token: str = fastapi.Header(None, alias="Authorization")):
+    print(f'{request.cookies=}')
+    print(f'{request.headers=}')
+    print(f'{token=}')
     # if 'authorization' in request.headers:
     #     authorization = request.headers['authorization'].split(' ')[1]
     try:
@@ -87,6 +90,8 @@ async def sign_in(request: fastapi.Request):
     except Exception as exception:
         log.exception(msg=str(exception))
         return {"Exception": str(exception)}
+
+
 
 
 
@@ -134,6 +139,9 @@ async def projects(request: fastapi.Request):
 
 @router.post(path='/create/project/')
 async def create_project(request: fastapi.Request, project_name: str = fastapi.Form(...)):
+    print(f'{request.headers=}')
+    print(f'{request.cookies=}')
+    
     if not STORAGE_DIRECTORY_PATH.exists():
         return fastapi.Response(status_code=starlette.status.HTTP_404_NOT_FOUND)
     

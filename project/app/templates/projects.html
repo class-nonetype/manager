@@ -1,31 +1,78 @@
-<h1>Module.Projects</h1>
-
-
-
-<div class="container" id="environment">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#app-project-modal" data-bs-whatever="app-project">Crear un nuevo proyecto</button>
-    
-    <div class="modal fade" id="app-project-modal" tabindex="-1" aria-labelledby="app-project-modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="app-project-modal-label">Nuevo proyecto</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="project-form">
-              <div class="mb-3">
-                <label for="project-name" class="col-form-label">Nombre del proyecto:</label>
-                <input type="text" class="form-control" id="project-name" name="project_name">
-              </div>
-              <div class="d-flex justify-content-center">
-                  <button class="app-button-create-project" type="button">Crear proyecto</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+<div class="container" id="project_environment">
+  <div class="jumbotron">
+    <h1 class="display-4">Proyectos</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <div class="d-flex justify-content-center">
+        <button class="app_module_header_button" type="button" data-bs-toggle="modal" data-bs-target="#app_project_modal" data-bs-whatever="app_project">Crear un nuevo proyecto</button>
     </div>
+  </div>
+
+  <div class="modal fade" id="app_project_modal" tabindex="-1" aria-labelledby="app_project_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="app_project_modal_label">Nuevo proyecto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="app_project_form">
+                    <div class="mb-3">
+                        <label for="project_name" class="col-form-label app_form_label">Nombre del proyecto</label>
+                        <input type="text" class="form-control app_form_input" id="project_name" name="project_name">
+
+                        <label for="project_description" class="col-form-label app_form_label">Descripción del proyecto</label>
+                        <textarea class="form-control app_form_input" id="project_description" name="project_description" rows="3"></textarea>
+
+                        <label for="project_version" class="col-form-label app_form_label">Versión del proyecto</label>
+                        <input type="number" class="form-control app_form_input" id="project_version" name="project_version" min="0" max="500">
+
+                        <label for="project_end_date" class="col-form-label app_form_label" required pattern="\d{4}-\d{2}-\d{2}">Fecha de finalización</label>
+                        <input type="date" class="form-control app_form_input" id="project_end_date" name="project_end_date">
+
+                        <label for="project_end_date" class="col-form-label app_form_label" required pattern="\d{4}-\d{2}-\d{2}">Fecha de finalización</label>
+                        <input type="date" class="form-control app_form_input" id="project_end_date" name="project_end_date">
+
+                        <label for="project_status" class="col-form-label app_form_label">Estado del proyecto</label>
+                        <select class="form-control app_form_input" id="project_status" name="project_status">
+                            <option value="EN PROGRESO">EN PROGRESO</option>
+                            <option value="COMPLETADO">COMPLETADO</option>
+                            <option value="PENDIENTE">PENDIENTE</option>
+                        </select>
+
+                        <label for="project_manager" class="col-form-label app_form_label">Gerente de proyecto</label>
+                        <input type="text" class="form-control app_form_input" id="project_manager" name="project_manager">
+
+                        <label for="project_team" class="col-form-label app_form_label">Equipo del proyecto</label>
+                        <input type="text" class="form-control app_form_input" id="project_team" name="project_team">
+
+                        <label for="project_budget" class="col-form-label app_form_label" min="0" max="1000000000000">Presupuesto del proyecto</label>
+                        <input type="number" class="form-control app_form_input" id="project_budget" name="project_budget">
+
+                        <label for="project_client" class="col-form-label app_form_label">Cliente del proyecto</label>
+                        <input type="text" class="form-control app_form_input" id="project_client" name="project_client">
+
+                        <label for="project_priority" class="col-form-label app_form_label">Prioridad del proyecto</label>
+                        <select class="form-control app_form_input" id="project_priority" name="project_priority">
+                            <option value="ALTA">ALTA</option>
+                            <option value="MEDIA">MEDIA</option>
+                            <option value="BAJA">BAJA</option>
+                        </select>
+
+                        <label for="project_tags" class="col-form-label app_form_label">Etiquetas del proyecto (separadas por comas)</label>
+                        <input type="text" class="form-control app_form_input" id="project_tags" name="project_tags">
+
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="app_button_create_project" type="button">Crear proyecto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 

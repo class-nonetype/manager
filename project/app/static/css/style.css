@@ -144,19 +144,19 @@ div.content {
 
 
 
-.app-project-folder {
+.app_project_folder {
     align-items: start;
     width: 120px;
     cursor: pointer;
     user-select: none;
 }
 
-.app-project-folder .fa-folder {
+.app_project_folder .fa-folder {
     font-size: 52px;
     color: #1e90ff;
 }
 
-.app-project-folder-name {
+.app_project_folder-name {
     text-align: center;
     margin-top: 5px;
 }
@@ -227,7 +227,7 @@ div.content {
 }
 
 
-
+.app_button_create_project,
 .app_form_button {
     background-color: #C86F38;
     color: #F1F1F1;
@@ -240,12 +240,13 @@ div.content {
     margin-top: 16px; /* Espacio entre el último campo de formulario y el botón */
 }
 
-
+.app_button_create_project:hover,
 .app_form_button:hover {
     background-color: #E1874F;
     color: #212121;
 }
 
+.app_button_create_project:hover .overlay,
 .app_form_button:hover .overlay {
   transform: scale(2) translateZ(0);
   transition: color 0.9s ease;
@@ -253,7 +254,31 @@ div.content {
 
 
 
+.app_module_header_button {
+    background-color: #435cb3;
+    color: #F1F1F1;
 
+    width: 15% !important;
+    min-width: 15% !important;
+    max-width: 15% !important;
+
+    height: 62px !important;
+    min-height: 62px !important;
+    max-height: 62px !important;
+    border: 0;
+    margin-top: 16px; /* Espacio entre el último campo de formulario y el botón */
+}
+
+
+.app_module_header_button:hover {
+    background-color: #697bb9;
+    color: #212121;
+}
+
+.app_module_header_button:hover .overlay {
+  transform: scale(2) translateZ(0);
+  transition: color 0.9s ease;
+}
 
 
 

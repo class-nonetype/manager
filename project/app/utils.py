@@ -20,6 +20,19 @@ API_HOST = '0.0.0.0'
 API_PORT = 7500
 
 
+class UserSession:
+    
+    def __init__(self):
+        pass
+
+    def set_token(self, token: str):
+        self.token = token
+    
+    def get_token(self):
+        return self.token
+
+user_session = UserSession()
+
 
 def connect(path: pathlib.Path):
     import sqlite3
@@ -31,6 +44,9 @@ def connect(path: pathlib.Path):
 
 def get_datetime() -> datetime.datetime:
     return datetime.datetime.now(tz=TIMEZONE)
+
+
+
 
 
 INTERNAL_DIRECTORY_NAME = 'internal'

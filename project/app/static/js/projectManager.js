@@ -1,5 +1,5 @@
 async function createProject() {
-    const projectName = document.getElementById('project-name').value.trim();
+    const projectName = document.getElementById('project_name').value.trim();
     if (!projectName) {
         Swal.fire({
             icon: 'error',
@@ -36,4 +36,7 @@ async function createProject() {
         });
     }
 }
-document.querySelector('.app-button-create-project').addEventListener('click', createProject);
+
+
+
+document.querySelector('.app_button_create_project').addEventListener('click', createProject);
