@@ -144,22 +144,7 @@ div.content {
 
 
 
-.app_project_folder {
-    align-items: start;
-    width: 120px;
-    cursor: pointer;
-    user-select: none;
-}
 
-.app_project_folder .fa-folder {
-    font-size: 52px;
-    color: #1e90ff;
-}
-
-.app_project_folder-name {
-    text-align: center;
-    margin-top: 5px;
-}
 
 
 /* Considerar esta nomenclatura */
@@ -369,4 +354,85 @@ div.content {
     border-radius: 24px;
     margin-top: 16px; /* Espacio entre el último campo de formulario y el botón */
     align-self: center; /* Centra el botón */
+}
+
+
+
+
+
+
+
+
+
+
+
+.jumbotron {
+    background-color: #1976D2;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.display-4 {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.lead {
+    font-size: 1.2rem;
+}
+.app_module_header_button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.app_module_header_button:hover {
+    background-color: #1976D2;
+}
+.row {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+
+
+.app_project .fa-folder {
+    font-size: 52px;
+    color: #1e90ff;
+}
+
+.app_project_name {
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.app_project {
+    display: flex;
+    align-items: start; /*center*/
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+}
+.app_project:hover {
+    transform: translateY(-5px);
+}
+.app_project i {
+    font-size: 24px;
+    color: #1976D2;
+}
+.app_project_name {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    color: #333;
 }

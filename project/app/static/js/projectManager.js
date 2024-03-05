@@ -1,3 +1,4 @@
+
 async function createProject() {
     const projectName = document.getElementById('project_name').value.trim();
     if (!projectName) {
@@ -36,7 +37,7 @@ async function createProject() {
         });
     }
 }
-
+ss
 
 
 document.querySelector('.app_button_create_project').addEventListener('click', createProject);

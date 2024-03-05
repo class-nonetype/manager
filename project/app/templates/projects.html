@@ -71,10 +71,60 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
+
+    <div class="modal fade" id="app_project_directory" tabindex="-1" aria-labelledby="app_project_directory_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="app_project_directory_label">Nuevo proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del treeview aquí -->
+                    <div id="treeview_container">
+                        <ul id="treeview">
+                            <li>
+                                <span class="folder">Carpeta 1</span>
+                                <ul>
+                                    <li><span>Carpeta 1.1</span></li>
+                                    <li><span>Carpeta 1.2</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="folder">Carpeta 2</span>
+                                <ul>
+                                    <li><span>Carpeta 2.1</span></li>
+                                    <li><span>Carpeta 2.2</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        {% for directory in directories %}
+            <div class="col-sm">
+                <div class="app_project" data-directory="{{ directory }}">
+                    <i class="fa fa-folder"></i>
+                    <p class="app_project_name">{{ directory }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 </div>
 
 
 
 <script src="{{ url_for('static', path='/js/projectManager.js') }}"></script>
+
+

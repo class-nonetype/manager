@@ -1,6 +1,8 @@
 import starlette.status
 import sqlalchemy.orm
 import fastapi
+import os
+
 from fastapi import APIRouter
 from fastapi import templating
 from fastapi import Depends, Request, Response, Header
@@ -130,7 +132,7 @@ async def dashboard(request: fastapi.Request):
 @router.get(path="/projects/")
 async def projects(request: fastapi.Request):
     try:
-        return template.TemplateResponse(name="projects.html", context={"request": request})
+        return template.TemplateResponse(name="projects.html", context={"request": request, 'directories': [directory for directory in STORAGE_DIRECTORY_PATH.iterdir()]})
 
     except Exception as exception:
         log.exception(msg=str(exception))
@@ -172,8 +174,12 @@ async def works(request: fastapi.Request):
 
 @router.get(path="/directories/")
 async def directories(request: fastapi.Request):
+    import os
+    
     try:
-        return template.TemplateResponse(name="directories.html", context={"request": request})
+        user_directories = [directory for directory in os.listdir(STORAGE_DIRECTORY_PATH)]
+
+        return template.TemplateResponse(name="directories.html", context={"request": request, "user_directories": user_directories})
 
     except Exception as exception:
         log.exception(msg=str(exception))
